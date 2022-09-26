@@ -4,7 +4,7 @@ module.exports = {
     let token = req.get("authorization");
     if (token) {
       token = token.slice(7);
-      verify(token, process.env.secret_key, (error, decodec) => {
+      verify(token, process.env.secret_key, (error, decode) => {
         if (error) {
           res.json({
             success: 0,

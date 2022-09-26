@@ -7,10 +7,11 @@ const {
   deleteUser,
   updateUsers,
 } = require("./userController");
-
 const router = require("express").Router();
 const { checkToken } = require("../../Auth/validation");
-router.post("/", createUser);
+const { addUserValidation } = require("../../Validation/users/userValidation");
+
+router.post("/create", checkToken, addUserValidation, createUser);
 router.get("/", checkToken, getUsers);
 router.get("/:id", checkToken, getUserByUserId);
 router.patch("/", checkToken, updateUsers);
